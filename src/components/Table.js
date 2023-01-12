@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import TableContext from '../context/TableContext';
 
 function Table() {
-  const { myTable } = useContext(TableContext);
+  const { planets, wordSearch } = useContext(TableContext);
   return (
     <>
       <h4> Table </h4>
@@ -26,8 +26,10 @@ function Table() {
         </thead>
 
         <tbody>
-          {
-            myTable.map((info) => (
+          {planets
+            .filter((planet) => planet.name.toUpperCase()
+              .includes(wordSearch.toUpperCase()))
+            .map((info) => (
               <tr key={ info.url }>
                 <td>{info.name}</td>
                 <td>{info.rotation_period}</td>
@@ -43,13 +45,12 @@ function Table() {
                 <td>{info.edited}</td>
                 <td>{info.url}</td>
               </tr>
-            ))
-          }
+            ))}
         </tbody>
       </table>
       <button
         type="button"
-        onClick={ console.log(myTable) }
+        onClick={ console.log(planets) }
       >
         console
       </button>
