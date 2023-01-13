@@ -10,19 +10,33 @@ function Search() {
 
   const mySearch = planets;
 
+  function teste() {
+    return optionList.map((option, index) => (
+      <option
+        key={ index }
+        aria-label="option"
+      >
+        {option}
+      </option>
+    ));
+  }
+
   function handleFilter() {
     if (comparisonFilter === 'menor que') {
       setPlanets(mySearch
         .filter((planet) => Number(planet[columnFilter]) < Number(numberSearch)));
       setOptionsList(optionList.filter((option) => option !== columnFilter));
+      teste();
     } else if (comparisonFilter === 'maior que') {
       setPlanets(mySearch
         .filter((planet) => Number(planet[columnFilter]) > Number(numberSearch)));
       setOptionsList(optionList.filter((option) => option !== columnFilter));
+      teste();
     } else {
       setPlanets(mySearch
         .filter((planet) => Number(planet[columnFilter]) === Number(numberSearch)));
       setOptionsList(optionList.filter((option) => option !== columnFilter));
+      teste();
     }
   }
 
@@ -42,9 +56,7 @@ function Search() {
         value={ columnFilter }
         onChange={ (e) => setColumnFilter(e.target.value) }
       >
-        {optionList.map((option, index) => (
-          <option key={ index } aria-label="option">{option}</option>
-        )) }
+        {teste()}
       </select>
 
       <select

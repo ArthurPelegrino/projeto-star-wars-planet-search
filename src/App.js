@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TableContext from './context/TableContext';
 import Table from './components/Table';
+import OrderTable from './components/OrderTable';
 import './App.css';
 import Search from './components/Search';
 
@@ -9,13 +10,6 @@ function App() {
   const [planetsBackup, setPlanetsBackup] = useState([]);
   const [wordSearch, setWordSearch] = useState('');
   const [numberSearch, setNumberSearch] = useState(0);
-  const [columnFilter, setColumnFilter] = useState('population');
-  const [comparisonFilter, setComparisonFilter] = useState('maior que');
-  const [filter, setFilter] = useState({
-    numberSearch,
-    columnFilter,
-    comparisonFilter,
-  });
   const [optionList, setOptionsList] = useState([
     'population',
     'orbital_period',
@@ -23,6 +17,17 @@ function App() {
     'rotation_period',
     'surface_water',
   ]);
+  const [columnFilter, setColumnFilter] = useState(optionList[0]);
+  const [comparisonFilter, setComparisonFilter] = useState('maior que');
+  const [filter, setFilter] = useState({
+    numberSearch,
+    columnFilter,
+    comparisonFilter,
+  });
+
+  useEffect(() => {
+    setColumnFilter(optionList[0]);
+  }, [optionList]);
 
   useEffect(() => {
     fetch('https://swapi.dev/api/planets')
@@ -58,6 +63,7 @@ function App() {
     <TableContext.Provider value={ context }>
       <h1> StarWars</h1>
       <Search />
+      <OrderTable />
       <Table />
     </TableContext.Provider>
 
