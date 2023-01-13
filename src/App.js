@@ -16,6 +16,13 @@ function App() {
     columnFilter,
     comparisonFilter,
   });
+  const [optionList, setOptionsList] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
 
   useEffect(() => {
     fetch('https://swapi.dev/api/planets')
@@ -43,6 +50,8 @@ function App() {
     setComparisonFilter,
     filter,
     setFilter,
+    optionList,
+    setOptionsList,
   };
 
   return (

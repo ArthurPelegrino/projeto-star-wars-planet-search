@@ -6,8 +6,7 @@ function Search() {
     numberSearch, setNumberSearch, columnFilter,
     setColumnFilter, comparisonFilter,
     setComparisonFilter, planets, setPlanets,
-    // planetsBackup, setPlanetsBackup
-  } = useContext(TableContext);
+    optionList, setOptionsList } = useContext(TableContext);
 
   const mySearch = planets;
 
@@ -15,12 +14,15 @@ function Search() {
     if (comparisonFilter === 'menor que') {
       setPlanets(mySearch
         .filter((planet) => Number(planet[columnFilter]) < Number(numberSearch)));
+      setOptionsList(optionList.filter((option) => option !== columnFilter));
     } else if (comparisonFilter === 'maior que') {
       setPlanets(mySearch
         .filter((planet) => Number(planet[columnFilter]) > Number(numberSearch)));
+      setOptionsList(optionList.filter((option) => option !== columnFilter));
     } else {
       setPlanets(mySearch
         .filter((planet) => Number(planet[columnFilter]) === Number(numberSearch)));
+      setOptionsList(optionList.filter((option) => option !== columnFilter));
     }
   }
 
@@ -40,11 +42,9 @@ function Search() {
         value={ columnFilter }
         onChange={ (e) => setColumnFilter(e.target.value) }
       >
-        <option aria-label="option">population</option>
-        <option aria-label="option">orbital_period</option>
-        <option aria-label="option">diameter</option>
-        <option aria-label="option">rotation_period</option>
-        <option aria-label="option">surface_water</option>
+        {optionList.map((option, index) => (
+          <option key={ index } aria-label="option">{option}</option>
+        )) }
       </select>
 
       <select
