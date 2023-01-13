@@ -6,13 +6,23 @@ import Search from './components/Search';
 
 function App() {
   const [planets, setPlanets] = useState([]);
+  const [planetsBackup, setPlanetsBackup] = useState([]);
   const [wordSearch, setWordSearch] = useState('');
+  const [numberSearch, setNumberSearch] = useState(0);
+  const [columnFilter, setColumnFilter] = useState('population');
+  const [comparisonFilter, setComparisonFilter] = useState('maior que');
+  const [filter, setFilter] = useState({
+    numberSearch,
+    columnFilter,
+    comparisonFilter,
+  });
 
   useEffect(() => {
     fetch('https://swapi.dev/api/planets')
       .then((response) => response.json())
       .then((data) => {
         setPlanets(data.results);
+        setPlanetsBackup(data.results);
       });
   }, []);
 
@@ -20,9 +30,21 @@ function App() {
 
   const context = {
     planets,
+    setPlanets,
+    planetsBackup,
+    setPlanetsBackup,
     wordSearch,
     setWordSearch,
+    numberSearch,
+    setNumberSearch,
+    columnFilter,
+    setColumnFilter,
+    comparisonFilter,
+    setComparisonFilter,
+    filter,
+    setFilter,
   };
+
   return (
     <TableContext.Provider value={ context }>
       <h1> StarWars</h1>

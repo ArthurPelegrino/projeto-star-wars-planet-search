@@ -48,12 +48,6 @@ function Table() {
             ))}
         </tbody>
       </table>
-      <button
-        type="button"
-        onClick={ console.log(planets) }
-      >
-        console
-      </button>
     </>
   );
 }
