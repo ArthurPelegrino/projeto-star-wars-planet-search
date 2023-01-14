@@ -2,7 +2,15 @@ import React, { useContext } from 'react';
 import TableContext from '../context/TableContext';
 
 function Table() {
-  const { planets, wordSearch } = useContext(TableContext);
+  const { planets, wordSearch,
+    // sort
+  } = useContext(TableContext);
+
+  // function handleSort() {
+  //   if ( sort.column === 'population' &&
+  //     sort.sortOrder === 'ASC')
+
+  // }
   return (
     <>
       <h4> Table </h4>
@@ -29,6 +37,7 @@ function Table() {
           {planets
             .filter((planet) => planet.name.toUpperCase()
               .includes(wordSearch.toUpperCase()))
+          // .sort(())
             .map((info) => (
               <tr key={ info.url }>
                 <td>{info.name}</td>

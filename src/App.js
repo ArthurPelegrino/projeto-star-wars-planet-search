@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import TableContext from './context/TableContext';
 import Table from './components/Table';
-import OrderTable from './components/OrderTable';
+// import OrderTable from './components/SortTable';
 import './App.css';
 import Search from './components/Search';
 
@@ -17,13 +17,30 @@ function App() {
     'rotation_period',
     'surface_water',
   ]);
+  const [optionListBackUp, setOptionListBackup] = useState([
+    'population',
+    'orbital_period',
+    'diameter',
+    'rotation_period',
+    'surface_water',
+  ]);
   const [columnFilter, setColumnFilter] = useState(optionList[0]);
   const [comparisonFilter, setComparisonFilter] = useState('maior que');
-  const [filter, setFilter] = useState({
-    numberSearch,
-    columnFilter,
-    comparisonFilter,
+  const [filter, setFilter] = useState([
+  ]);
+  const [sort, setSort] = useState({
+    order: {
+      column: 'population',
+      sortOrder: 'ASC',
+    },
   });
+
+  function sortSetup(coluna, ordem) {
+    setSort({ order: {
+      column: coluna,
+      sort: ordem,
+    } });
+  }
 
   useEffect(() => {
     setColumnFilter(optionList[0]);
@@ -57,13 +74,18 @@ function App() {
     setFilter,
     optionList,
     setOptionsList,
+    sort,
+    setSort,
+    sortSetup,
+    optionListBackUp,
+    setOptionListBackup,
   };
 
   return (
     <TableContext.Provider value={ context }>
       <h1> StarWars</h1>
       <Search />
-      <OrderTable />
+      {/* <OrderTable /> */}
       <Table />
     </TableContext.Provider>
 

@@ -1,0 +1,18 @@
+function handleFilter() {
+  if (comparisonFilter === 'menor que') {
+    setPlanets(mySearch
+      .filter(
+        (planet) => Number(planet[columnFilter]) < Number(numberSearch),
+      ));
+    setOptionsList(optionList.filter((option) => option !== columnFilter));
+  } else if (comparisonFilter === 'maior que') {
+    setPlanets(mySearch
+      .filter((planet) => Number(planet[columnFilter]) > Number(numberSearch)));
+    setOptionsList(optionList.filter((option) => option !== columnFilter));
+  } else {
+    setPlanets(mySearch
+      .filter((planet) => Number(planet[columnFilter]) === Number(numberSearch)));
+    setOptionsList(optionList.filter((option) => option !== columnFilter));
+  }
+  // renderOptionList();
+}
