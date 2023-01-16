@@ -28,35 +28,6 @@ function Search() {
     setPlanets(planetsBackup);
   }
 
-  // function handleFilter() {
-  //   if (comparisonFilter === 'menor que') {
-  //     setPlanets(planets
-  //       .filter(
-  //         (planet) => Number(planet[columnFilter]) < Number(numberSearch),
-  //       ));
-
-  //     setOptionsList(optionList.filter((option) => option !== columnFilter));
-  //   } else if (comparisonFilter === 'maior que') {
-  //     setPlanets(planets
-  //       .filter((planet) => Number(planet[columnFilter]) > Number(numberSearch)));
-
-  //     setOptionsList(optionList.filter((option) => option !== columnFilter));
-  //   } else {
-  //     setPlanets(planets
-  //       .filter((planet) => Number(planet[columnFilter]) === Number(numberSearch)));
-  //     setOptionsList(optionList.filter((option) => option !== columnFilter));
-  //   }
-  //   // renderOptionList();
-  //   setFilter([...filter, {
-  //     coluna: columnFilter,
-  //     tamanho: comparisonFilter,
-  //     numero: numberSearch,
-  //   },
-  //   ]);
-  //   console.log('planets handle filter', planets);
-  //   console.log('filter handlefilters', filter);
-  // }
-
   function handleClick() {
     setFilter([...filter, {
       coluna: columnFilter,
@@ -99,6 +70,7 @@ function Search() {
 
   return (
     <>
+      <h1>Star Wars</h1>
       <input
         type="text"
         name="wordSearch"

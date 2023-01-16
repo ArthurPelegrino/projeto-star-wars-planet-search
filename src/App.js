@@ -83,7 +83,6 @@ function App() {
 
   return (
     <TableContext.Provider value={ context }>
-      <h1> StarWars</h1>
       <Search />
       {/* <OrderTable /> */}
       <Table />
